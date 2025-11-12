@@ -25,10 +25,7 @@ public class DenunciaService {
 
 
 
-    public Denuncia salvar(Denuncia denuncia,int usuarioId) {
-        UsuarioClient usuarioValidado = usuarioService.buscarUsuarioPorId(usuarioId);
-
-        denuncia.setIdUsuario(usuarioValidado.getIdUsuario());
+    public Denuncia salvar(Denuncia denuncia) {
         return denunciaRepository.save(denuncia);
     }
 

@@ -1,13 +1,14 @@
 package com.example.Denuncia_Service.Security;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
-import java.security.Key;
 
 @Component
 public class JwtUtil {
@@ -24,13 +25,26 @@ public class JwtUtil {
     }
 
     public int getUserIdFromToken(String token) {
-        String subject = Jwts.parserBuilder()
+        Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+                .getBody();
 
+        // O ID do usuário está no "sub" (subject) do token
+        String subject = claims.getSubject();
+        if (subject == null || subject.isEmpty()) {
+            throw new RuntimeException("Subject não encontrado no token");
+        }
         return Integer.parseInt(subject);
     }
+
+    public Claims getAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
 }

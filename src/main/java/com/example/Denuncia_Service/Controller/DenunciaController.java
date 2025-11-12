@@ -21,8 +21,10 @@ public class DenunciaController {
     public ResponseEntity<Denuncia> criarDenuncia(@RequestBody Denuncia denuncia,
                                                   @RequestHeader("Authorization") String token) {
         int idUsuario = jwtUtil.getUserIdFromToken(token.replace("Bearer ", ""));
+
         denuncia.setIdUsuario(idUsuario);
-        Denuncia saved = denunciaService.salvar(denuncia, idUsuario);
+
+        Denuncia saved = denunciaService.salvar(denuncia);
         return ResponseEntity.ok(saved);
     }
 
