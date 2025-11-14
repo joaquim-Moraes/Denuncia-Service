@@ -16,6 +16,9 @@ public class DenunciaServiceApplication {
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
         // Puxando a chave secret
 		System.setProperty("JWT_SECRET", dotenv.get("JWT_SECRET"));
+        // PUxando api e url do IPQS do env
+        System.setProperty("IPQS_KEY", dotenv.get("IPQS_KEY"));
+        System.setProperty("IPQS_URL", dotenv.get("IPQS_URL"));
 
         SpringApplication.run(DenunciaServiceApplication.class, args);
 }}
