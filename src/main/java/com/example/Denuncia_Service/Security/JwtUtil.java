@@ -24,7 +24,7 @@ public class JwtUtil {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public int getUserIdFromToken(String token) {
+    public Long getUserIdFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
@@ -36,7 +36,7 @@ public class JwtUtil {
         if (subject == null || subject.isEmpty()) {
             throw new RuntimeException("Subject não encontrado no token");
         }
-        return Integer.parseInt(subject);
+        return Long.parseLong(subject);
     }
 
     public Claims getAllClaims(String token) {

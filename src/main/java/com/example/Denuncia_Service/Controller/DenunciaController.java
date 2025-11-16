@@ -24,7 +24,7 @@ public class DenunciaController {
     @PostMapping("/cadastrar")
     public ResponseEntity<Denuncia> criarDenuncia(@RequestBody Denuncia denuncia,
                                                   @RequestHeader("Authorization") String token) {
-        int idUsuario = jwtUtil.getUserIdFromToken(token.replace("Bearer ", ""));
+        Long idUsuario = jwtUtil.getUserIdFromToken(token.replace("Bearer ", ""));
 
         denuncia.setIdUsuario(idUsuario);
 

@@ -1,19 +1,11 @@
 package com.example.Denuncia_Service.Service;
 
-import com.example.Denuncia_Service.Client.UsuarioClient;
-import com.example.Denuncia_Service.dto.RespostaApiTelefoneDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-
-import java.util.Map;
+import com.example.Denuncia_Service.dto.RespostaApiTelefoneDTO;
 
 @Service
 public class TelefoneReputacaoService {
@@ -28,7 +20,7 @@ public class TelefoneReputacaoService {
 
     public RespostaApiTelefoneDTO buscarReputacao(String numero) {
 
-        String urlCompleta = apiUrl + "/" + telefoneApiKey + "/" + numero;
+        String urlCompleta = apiUrl + "/" + telefoneApiKey + "/+55" + numero;
 
         try {
             // 3. PEDIMOS AO RESTTEMPLATE PARA USAR A CLASSE DTO
