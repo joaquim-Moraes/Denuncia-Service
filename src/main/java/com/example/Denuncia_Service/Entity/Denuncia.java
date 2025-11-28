@@ -16,11 +16,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Denuncia")
+@Table(name = "denuncia")
 public class Denuncia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_denuncia", unique = true)
     private Long idDenuncia;
     @Column(name = "titulo_denuncia", unique = false, nullable = false)
     private String titulo;
